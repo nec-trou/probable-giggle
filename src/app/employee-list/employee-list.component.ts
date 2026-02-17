@@ -50,7 +50,7 @@ export class EmployeeListComponent implements OnInit {
     this.loadEmployees();
     this.departmentStore.load(this.selectedOrganization.id);
 
-    // #I same click triggers navigate -> queryParams -> openCard, and we also call openCard below
+    // #I
     this.route.queryParams.subscribe(params => {
       const employeeId = params['employeeId'];
       if (employeeId && employeeId !== 'new') {
