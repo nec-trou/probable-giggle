@@ -9,7 +9,7 @@ export class EmployeeStore {
   page = 0;
   pageSize = 5;
   loading = false;
-  error: string | null = null; // #J never set on failure
+  error: string | null = null; // #J
   currentEmployee: Employee | null = null;
   formRef: unknown = null; // #D
 
