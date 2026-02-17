@@ -1,0 +1,15 @@
+.employees-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+
+  &__header {
+    margin-bottom: 24px;
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--p-text-color);
+    }
+  }
+}

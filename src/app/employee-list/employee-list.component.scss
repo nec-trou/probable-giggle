@@ -1,0 +1,31 @@
+.employee-list {
+  &__toolbar {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__org-filter {
+    min-width: 200px;
+  }
+
+  &__search {
+    min-width: 200px;
+  }
+
+  &__row {
+    cursor: pointer;
+    transition: background-color 0.15s;
+
+    &:hover {
+      background-color: var(--p-surface-100) !important;
+    }
+  }
+}
+
+:host ::ng-deep .text-secondary {
+  color: var(--p-text-muted-color);
+  font-size: 0.875rem;
+}

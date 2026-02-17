@@ -1,0 +1,54 @@
+<!-- #L -->
+<p-drawer
+  [(visible)]="visible"
+  position="right"
+  [style]="{ width: '420px' }"
+  (onHide)="onDrawerHide()">
+
+  <ng-template pTemplate="header">
+    <span class="card-title">
+      {{ employeeId ? 'Редактирование' : 'Новый сотрудник' }}
+    </span>
+  </ng-template>
+
+  <form [formGroup]="form" class="card-form">
+    <div class="card-form__field">
+      <label for="fullName">ФИО</label>
+      <input pInputText id="fullName" formControlName="fullName" class="w-full" />
+    </div>
+
+    <div class="card-form__field">
+      <label for="position">Должность</label>
+      <input pInputText id="position" formControlName="position" class="w-full" />
+    </div>
+
+    <div class="card-form__field">
+      <label for="departmentId">Отдел</label>
+      <p-select
+        [options]="departmentStore.departments"
+        formControlName="departmentId"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="Выберите отдел"
+        class="w-full">
+      </p-select>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <div class="card-actions">
+      <p-button
+        label="Сохранить"
+        icon="pi pi-check"
+        (onClick)="onSave()"
+        [disabled]="!form.valid">
+      </p-button>
+      <p-button
+        label="Закрыть"
+        icon="pi pi-times"
+        [outlined]="true"
+        (onClick)="doClose()">
+      </p-button>
+    </div>
+  </ng-template>
+</p-drawer>

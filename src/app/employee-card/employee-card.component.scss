@@ -1,0 +1,33 @@
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 8px 0;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--p-text-muted-color);
+    }
+  }
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.w-full {
+  width: 100%;
+}

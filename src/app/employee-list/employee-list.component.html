@@ -1,0 +1,80 @@
+<div class="employee-list">
+  <div class="employee-list__toolbar">
+    <p-select
+      [options]="organizations"
+      [(ngModel)]="selectedOrganization"
+      optionLabel="name"
+      placeholder="Организация"
+      (onChange)="onOrganizationChange()"
+      class="employee-list__org-filter">
+    </p-select>
+
+    <input
+      pInputText
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Поиск..."
+      (keyup.enter)="onSearch()"
+      class="employee-list__search" />
+
+    <p-button
+      label="Поиск"
+      icon="pi pi-search"
+      [outlined]="true"
+      (onClick)="onSearch()">
+    </p-button>
+  </div>
+
+  <!-- #L -->
+  <p-table
+    [value]="store.employees"
+    [lazy]="true"
+    [paginator]="true"
+    [rows]="store.pageSize"
+    [totalRecords]="store.total"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [loading]="store.loading"
+    (onLazyLoad)="onPageChange($event)"
+    [tableStyle]="{ 'min-width': '50rem' }">
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Сотрудник</th>
+        <th>Отдел</th>
+        <th style="width: 100px">Действия</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-employee>
+      <tr (click)="onRowClick(employee)" class="employee-list__row">
+        <!-- #E -->
+        <td [innerHTML]="cellContent(employee)"></td>
+        <td>{{ getDepartmentName(employee.departmentId) }}</td>
+        <td>
+          <!-- #P -->
+          <p-button
+            icon="pi pi-pencil"
+            [rounded]="true"
+            [text]="true"
+            (onClick)="onRowClick(employee); $event.stopPropagation()">
+          </p-button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="3" class="text-center">Сотрудники не найдены</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<app-employee-card
+  *ngIf="cardVisible"
+  [visible]="cardVisible"
+  [employeeId]="selectedEmployeeId"
+  [organizationId]="selectedOrganization.id"
+  (closed)="onCardClosed($event)"
+  (saved)="onCardSaved()">
+</app-employee-card>
